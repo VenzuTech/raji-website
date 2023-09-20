@@ -28,6 +28,10 @@ function App() {
     return <div>Loading...</div>;
   }
 
+  if (auth.error) {
+    return <div>Oops... {auth.error.message} (check browser console!)</div>;
+  }
+
   if (!auth.isAuthenticated) {
     auth.signinRedirect();
   } else {
