@@ -10,6 +10,10 @@ function App() {
   }, []);
 
   const auth = useAuth();
+  if (import.meta.env.MODE == 'development') {
+    console.log(auth);
+  }
+  
   React.useEffect(() => {
     return auth.events.addUserLoaded(() => {
       window.history.replaceState(
@@ -30,7 +34,7 @@ function App() {
     return (
       <>
         <h1 className="text-center text-6xl py-5">
-          Hello {auth.user?.profile?.given_name} {}
+          Hello {auth.user?.profile?.name} {}
         </h1>
         <div className="gap-5">
             <button onClick={() => auth.signoutRedirect()}>Logout</button>
